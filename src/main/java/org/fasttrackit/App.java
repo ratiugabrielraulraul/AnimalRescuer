@@ -1,8 +1,7 @@
 package org.fasttrackit;
 
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class App
 {
@@ -20,6 +19,7 @@ public class App
 
 
 
+
         Adopter adopter = new Adopter();
         adopter.name = "Cristian";
         adopter.money = 20.33;
@@ -32,10 +32,16 @@ public class App
 
         Food food = new Food();
         food.name = "pedigree";
-        food.expirationDate = LocalDateTime.now();
+        food.expirationDate = LocalDate.now();
         food.price = 5.67;
         food.stock = true;
         food.capacity = 844.123;
+
+        Dog dog = new Dog();
+        dog.furColor = "white";
+
+        Parrot parrot = new Parrot();
+        parrot.availableToTalk = true;
 
 
 
