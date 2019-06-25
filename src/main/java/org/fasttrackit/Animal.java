@@ -11,4 +11,11 @@ public class Animal {
     String favoriteFood;
     String favoriteActivity;
 
+    public Animal(String name){
+        super();
+        this.name = name;
+    }
+
+    public Animal() {
+    }
 }

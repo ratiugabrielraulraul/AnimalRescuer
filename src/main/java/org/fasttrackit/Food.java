@@ -11,4 +11,8 @@ public class Food {
     LocalDate expirationDate;
     boolean stock;
 
+
+    public Food(String name) {
+        this.name = name;
+    }
 }

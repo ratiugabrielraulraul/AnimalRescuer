@@ -6,5 +6,8 @@ public class Vet {
     int price;
     String specialization;
 
-
+    public Vet(String name)
+    {
+        this.name = name;
+    }
 }
