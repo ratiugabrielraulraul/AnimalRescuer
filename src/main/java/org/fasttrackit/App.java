@@ -3,13 +3,11 @@ package org.fasttrackit;
 
 import java.time.LocalDate;
 
-public class App
-{
+public class App {
 
-    public static void main(String[] args ) {
+    public static void main(String[] args) {
 
         Animal animal = new Animal("Bella");
-        animal.name = "Adi";
         animal.age = 3;
         animal.hunger = 5;
         animal.favoriteFood = "pedigree";
@@ -17,22 +15,17 @@ public class App
         animal.healthStatus = 6;
         animal.mood = 5;
 
-
-
-
-        Adopter adopter = new Adopter("adi", 233.54);
-        adopter.feedingAnimal=true;
+        Adopter adopter = new Adopter("Adi", 233.54);
+        adopter.feedingAnimal = true;
         System.out.println(adopter.name);
         System.out.println(adopter.money);
-
 
         Vet vet = new Vet("Alex");
         vet.price = 10;
         vet.specialization = "doctor";
         System.out.println(vet.name);
 
-        Food food = new Food("pedigree");
-        food.name = "pedigree";
+        Food food = new Food("Pedigree");
         //food.expirationDate = new LocalDate(2020,7,23);
         food.price = 5.67;
         food.stock = true;
@@ -41,10 +34,8 @@ public class App
         Dog dog = new Dog("white");
         System.out.println(dog.furColor);
 
-
         Parrot parrot = new Parrot(true);
         System.out.println(parrot.availableToTalk);
-
 
 
         RecreationActivityName recreationActivityName = new RecreationActivityName("Running");
@@ -53,16 +44,8 @@ public class App
         System.out.println(activity.name.name);
         System.out.println(activity.place.name);
 
-
-
-
-
-
-
-
-
-
-
+        adopter.feed(parrot, food);
+        adopter.play(activity, animal);
 
 
     }
