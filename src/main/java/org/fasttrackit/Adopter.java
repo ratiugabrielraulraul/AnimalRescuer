@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import javax.security.auth.login.AccountNotFoundException;
+
 public class Adopter {
 
     private String name;
@@ -24,7 +26,9 @@ public class Adopter {
      */
     public void feed(Animal animal, Food food)
     {
+        animal.setHunger(animal.getHunger() - 1);
         System.out.println(this.name + " gave some " + food.getName() + " food to " + animal.getName());
+        System.out.println("Animal hunger level: " + animal.getHunger());
     }
 
     /**
@@ -34,7 +38,9 @@ public class Adopter {
      */
     public void play(RecreationActivity activity, Animal animal) {
 
+        animal.setMood(animal.getMood() + 1);
         System.out.println(this.name + " is " + activity.getName() + " with " + animal.getName() + " in " + activity.getPlace());
+        System.out.println("Animal happiness level: " + animal.getMood());
     }
 
     public String getName() {

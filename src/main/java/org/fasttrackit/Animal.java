@@ -9,6 +9,7 @@ public class Animal {
     private int mood;
     private String favoriteFood;
     private String favoriteActivity;
+    private String spiritMood;
 
     public Animal(String name){
         super();
@@ -20,7 +21,7 @@ public class Animal {
 
     public void expressHappiness()
     {
-        System.out.println("Is energetic");
+        System.out.println(this.getSpiritMood());
     }
 
     public String getName() {
@@ -77,5 +78,13 @@ public class Animal {
 
     public void setFavoriteActivity(String favoriteActivity) {
         this.favoriteActivity = favoriteActivity;
+    }
+
+    public String getSpiritMood() {
+        return spiritMood;
+    }
+
+    public void setSpiritMood(String spiritMood) {
+        this.spiritMood = spiritMood;
     }
 }

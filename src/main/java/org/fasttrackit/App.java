@@ -31,10 +31,15 @@ public class App {
         Dog dog = new Dog("white");
 
         Parrot parrot = new Parrot("Richie", true);
+        parrot.setHunger(10);
+
 
         RecreationActivity activity = new RecreationActivity("Running", "Hill");
         adopter.feed(parrot, food);
         adopter.play(activity, animal);
+
+        animal.setSpiritMood("is running");
+
         animal.expressHappiness();
         parrot.expressHappiness();
         dog.expressHappiness();
