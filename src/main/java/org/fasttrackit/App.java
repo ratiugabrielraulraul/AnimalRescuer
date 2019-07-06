@@ -22,7 +22,7 @@ public class App {
         vet.setPrice(10);
         vet.setSpecialization("doctor");
 
-        Food food = new Food("corn");
+        Food food = new Food("pedigree");
         //food.expirationDate = new LocalDate(2020,7,23);
         food.setPrice(5.73);
         food.setStock(true);
@@ -34,8 +34,8 @@ public class App {
         parrot.setHunger(10);
 
 
-        RecreationActivity activity = new RecreationActivity("Running", "Hill");
-        adopter.feed(parrot, food);
+        RecreationActivity activity = new RecreationActivity("running", "Hill");
+        adopter.feed(animal, food);
         adopter.play(activity, animal);
 
         animal.setSpiritMood("is running");

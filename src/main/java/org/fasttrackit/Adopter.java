@@ -26,9 +26,12 @@ public class Adopter {
      */
     public void feed(Animal animal, Food food)
     {
+        if (food.getName().equals(animal.getFavoriteFood())) {
+            animal.setMood(animal.getMood() + 1);
+        }
         animal.setHunger(animal.getHunger() - 1);
         System.out.println(this.name + " gave some " + food.getName() + " food to " + animal.getName());
-        System.out.println("Animal hunger level: " + animal.getHunger());
+        System.out.println("Animal hunger level: " + animal.getHunger() + " and happiness level is " + animal.getMood());
     }
 
     /**
@@ -38,7 +41,11 @@ public class Adopter {
      */
     public void play(RecreationActivity activity, Animal animal) {
 
-        animal.setMood(animal.getMood() + 1);
+        if (activity.getName().equals(animal.getFavoriteActivity())) {
+            animal.setMood(animal.getMood() + 2);
+        } else {
+            animal.setMood(animal.getMood() + 1);
+        }
         System.out.println(this.name + " is " + activity.getName() + " with " + animal.getName() + " in " + activity.getPlace());
         System.out.println("Animal happiness level: " + animal.getMood());
     }
