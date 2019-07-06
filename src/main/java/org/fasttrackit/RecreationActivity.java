@@ -1,12 +1,12 @@
 package org.fasttrackit;
 
 public class RecreationActivity {
-    RecreationActivityName name;
-    RecreationActivityPlace place;
+    String name;
+    String place;
 
-    public RecreationActivity(RecreationActivityName name, RecreationActivityPlace place)
+    public RecreationActivity( String name, String place)
     {
-        this.name = name;
+        this.name=name;
         this.place = place;
     }
 

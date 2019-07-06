@@ -38,12 +38,7 @@ public class App {
         System.out.println(parrot.availableToTalk);
 
 
-        RecreationActivityName recreationActivityName = new RecreationActivityName("Running");
-        RecreationActivityPlace recreationActivityPlace = new RecreationActivityPlace("Park");
-        RecreationActivity activity = new RecreationActivity(recreationActivityName, recreationActivityPlace);
-        System.out.println(activity.name.name);
-        System.out.println(activity.place.name);
-
+        RecreationActivity activity = new RecreationActivity("Running", "Hill");
         adopter.feed(parrot, food);
         adopter.play(activity, animal);
 

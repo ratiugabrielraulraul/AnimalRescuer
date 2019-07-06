@@ -43,7 +43,7 @@ public class Adopter {
         this.activity = activity;
         this.animal = animal;
 
-        System.out.println(this.name + " is " + this.activity.name.name + " with " + this.animal.name + " in " + this.activity.place.name);
+        System.out.println(this.name + " is " + this.activity.name + " with " + this.animal.name + " in " + this.activity.place);
     }
 }
 
