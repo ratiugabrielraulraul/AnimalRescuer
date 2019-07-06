@@ -8,31 +8,27 @@ public class App {
     public static void main(String[] args) {
 
         Animal animal = new Animal("Bella");
-        animal.age = 3;
-        animal.hunger = 5;
-        animal.favoriteFood = "pedigree";
-        animal.favoriteActivity = "running";
-        animal.healthStatus = 6;
-        animal.mood = 5;
+        animal.setAge(3);
+        animal.setHunger(5);
+        animal.setFavoriteFood("pedigree");
+        animal.setFavoriteActivity("running");
+        animal.setHealthStatus(6);
+        animal.setMood(5);
 
         Adopter adopter = new Adopter("Adi", 233.54);
-        adopter.feedingAnimal = true;
-        System.out.println(adopter.name);
-        System.out.println(adopter.money);
+        adopter.setFeedingAnimal(true);
 
         Vet vet = new Vet("Alex");
-        vet.price = 10;
-        vet.specialization = "doctor";
-        System.out.println(vet.name);
+        vet.setPrice(10);
+        vet.setSpecialization("doctor");
 
         Food food = new Food("corn");
         //food.expirationDate = new LocalDate(2020,7,23);
-        food.price = 5.67;
-        food.stock = true;
-        food.capacity = 844.123;
+        food.setPrice(5.73);
+        food.setStock(true);
+        food.setCapacity(844.123);
 
         Dog dog = new Dog("white");
-        System.out.println(dog.furColor);
 
         Parrot parrot = new Parrot("Richie", true);
 

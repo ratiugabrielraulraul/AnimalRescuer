@@ -9,4 +9,12 @@ public class Dog extends Animal {
         super();
         this.furColor = furColor;
     }
+
+    public String getFurColor() {
+        return furColor;
+    }
+
+    public void setFurColor(String furColor) {
+        this.furColor = furColor;
+    }
 }

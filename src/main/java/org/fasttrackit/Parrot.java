@@ -6,7 +6,15 @@ public class Parrot extends Animal {
 
     public Parrot(String name, boolean availableToTalk) {
         super();
-        this.name = name;
+        this.setName(name);
+        this.setAvailableToTalk(availableToTalk);
+    }
+
+    public boolean isAvailableToTalk() {
+        return availableToTalk;
+    }
+
+    public void setAvailableToTalk(boolean availableToTalk) {
         this.availableToTalk = availableToTalk;
     }
 }
