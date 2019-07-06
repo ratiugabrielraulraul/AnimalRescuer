@@ -25,7 +25,7 @@ public class App {
         vet.specialization = "doctor";
         System.out.println(vet.name);
 
-        Food food = new Food("Pedigree");
+        Food food = new Food("corn");
         //food.expirationDate = new LocalDate(2020,7,23);
         food.price = 5.67;
         food.stock = true;
@@ -34,9 +34,7 @@ public class App {
         Dog dog = new Dog("white");
         System.out.println(dog.furColor);
 
-        Parrot parrot = new Parrot(true);
-        System.out.println(parrot.availableToTalk);
-
+        Parrot parrot = new Parrot("Richie", true);
 
         RecreationActivity activity = new RecreationActivity("Running", "Hill");
         adopter.feed(parrot, food);

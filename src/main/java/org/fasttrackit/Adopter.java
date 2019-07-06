@@ -6,10 +6,6 @@ public class Adopter {
     double money;
     boolean feedingAnimal;
 
-    Food food;
-    Animal animal;
-    RecreationActivity activity;
-
     /**
      * Constructor;
      * @param name
@@ -28,10 +24,7 @@ public class Adopter {
      */
     public void feed(Animal animal, Food food)
     {
-        this.animal = animal;
-        this.food = food;
-
-        System.out.println(this.name + " gave some " + this.food.name + " food to " + this.animal.name);
+        System.out.println(this.name + " gave some " + food.name + " food to " + animal.name);
     }
 
     /**
@@ -40,10 +33,8 @@ public class Adopter {
      * @param animal
      */
     public void play(RecreationActivity activity, Animal animal) {
-        this.activity = activity;
-        this.animal = animal;
 
-        System.out.println(this.name + " is " + this.activity.name + " with " + this.animal.name + " in " + this.activity.place);
+        System.out.println(this.name + " is " + activity.name + " with " + animal.name + " in " + activity.place);
     }
 }
 
