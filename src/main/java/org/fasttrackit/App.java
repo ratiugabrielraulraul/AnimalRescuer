@@ -35,6 +35,9 @@ public class App {
         RecreationActivity activity = new RecreationActivity("Running", "Hill");
         adopter.feed(parrot, food);
         adopter.play(activity, animal);
+        animal.expressHappiness();
+        parrot.expressHappiness();
+        dog.expressHappiness();
 
 
     }

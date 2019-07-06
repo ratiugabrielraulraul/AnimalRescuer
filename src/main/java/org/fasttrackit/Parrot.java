@@ -4,6 +4,11 @@ public class Parrot extends Animal {
 
     boolean availableToTalk;
 
+    @Override
+    public void expressHappiness() {
+        System.out.println("Talking bullshit");
+    }
+
     public Parrot(String name, boolean availableToTalk) {
         super();
         this.setName(name);

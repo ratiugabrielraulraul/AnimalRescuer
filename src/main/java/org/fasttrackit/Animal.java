@@ -18,6 +18,11 @@ public class Animal {
     public Animal() {
     }
 
+    public void expressHappiness()
+    {
+        System.out.println("Is energetic");
+    }
+
     public String getName() {
         return name;
     }

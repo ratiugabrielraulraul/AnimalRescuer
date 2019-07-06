@@ -4,6 +4,11 @@ public class Dog extends Animal {
 
     String furColor;
 
+    @Override
+    public void expressHappiness() {
+        System.out.println("Playing with his tail");
+    }
+
     public Dog(String furColor)
     {
         super();
