@@ -7,14 +7,26 @@ public class Food {
 
     private String name;
     private double price;
-    private double capacity;
+    private int quantity;
     private LocalDate expirationDate;
     private boolean stock;
 
 
-    public Food(String name) {
+    public Food() {
         this.name = name;
     }
+
+    public boolean expirationDayCheck(LocalDate expirationDate, LocalDate now) {
+
+        if (now.isBefore(expirationDate)) {
+            System.out.println("this food hasn't expired yet");
+            return true;
+        }else {
+            System.out.println("this food has expired");
+            return false;
+        }
+    }
+
 
     public String getName() {
         return name;
@@ -32,13 +44,14 @@ public class Food {
         this.price = price;
     }
 
-    public double getCapacity() {
-        return capacity;
+    public double getQuantity() {
+        return quantity;
     }
 
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
+
 
     public LocalDate getExpirationDate() {
         return expirationDate;

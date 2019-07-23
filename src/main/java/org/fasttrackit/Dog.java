@@ -9,10 +9,11 @@ public class Dog extends Animal {
         System.out.println("Playing with his tail");
     }
 
-    public Dog(String furColor)
+    public Dog(String furColor, String name)
     {
         super();
         this.furColor = furColor;
+
     }
 
     public String getFurColor() {

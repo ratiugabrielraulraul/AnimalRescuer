@@ -11,10 +11,8 @@ public class Animal {
     private String favoriteActivity;
     private String spiritMood;
 
-    public Animal(String name){
-        super();
-        this.name = name;
-    }
+
+
 
     public Animal() {
     }
