@@ -6,13 +6,14 @@ public class Dog extends Animal {
 
     @Override
     public void expressHappiness() {
-        System.out.println("Playing with his tail");
+        System.out.println(this.getName() + " is playing with his tail");
     }
 
     public Dog(String furColor, String name)
     {
         super();
         this.furColor = furColor;
+        this.setName(name);
 
     }
 

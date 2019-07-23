@@ -19,7 +19,7 @@ public class Animal {
 
     public void expressHappiness()
     {
-        System.out.println(this.getSpiritMood());
+        System.out.println(this.name + " does generic stuff");
     }
 
     public String getName() {
