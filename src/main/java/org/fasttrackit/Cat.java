@@ -7,7 +7,7 @@ public class Cat extends Animal {
 
     @Override
     public void expressHappiness() {
-        System.out.println(this.getName() + "is purring");
+        System.out.println(this.getName() + " is purring");
     }
 
     public Cat(String furcolor) {

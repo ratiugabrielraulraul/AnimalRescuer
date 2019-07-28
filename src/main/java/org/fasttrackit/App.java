@@ -16,7 +16,6 @@ public class App {
         animal.setMood(5);
         animal.setName("Animal");
 
-        
 
         Adopter adopter = new Adopter("Adi", 233.54);
         adopter.setFeedingAnimal(true);
@@ -33,14 +32,14 @@ public class App {
         food.setName("pedigree");
 
         Food food1 = new Food();
-        food1.setExpirationDate(LocalDate.of(2019,11,3));
+        food1.setExpirationDate(LocalDate.of(2019, 11, 3));
         food1.setPrice(3.50);
         food1.setStock(true);
         food1.setQuantity(54);
         food1.setName("seeds");
 
         Food food2 = new Food();
-        food2.setExpirationDate(LocalDate.of(2019,10,14));
+        food2.setExpirationDate(LocalDate.of(2019, 10, 14));
         food2.setPrice(5.50);
         food2.setStock(true);
         food2.setQuantity(100);
@@ -49,17 +48,13 @@ public class App {
         food2.expirationDayCheck(food1.getExpirationDate(), food2.getExpirationDate());
 
 
+        Animal dog = new Dog("white", "Bella");
+
+        Animal cat = new Cat("grey");
+        cat.setName("Cat");
 
 
-
-
-
-
-
-
-        Dog dog = new Dog("white","Bella");
-
-        Parrot parrot = new Parrot("Richie", true);
+        Animal parrot = new Parrot("Richie", true);
         parrot.setHunger(10);
 
 
@@ -72,6 +67,7 @@ public class App {
         animal.expressHappiness();
         parrot.expressHappiness();
         dog.expressHappiness();
+        cat.expressHappiness();
 
 
     }
