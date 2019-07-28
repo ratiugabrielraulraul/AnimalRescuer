@@ -6,7 +6,7 @@ public class Parrot extends Animal {
 
     @Override
     public void expressHappiness() {
-        System.out.println("Talking bullshit");
+        System.out.println(this.getName() + " is singing");
     }
 
     public Parrot(String name, boolean availableToTalk) {

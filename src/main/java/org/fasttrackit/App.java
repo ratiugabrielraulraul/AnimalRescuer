@@ -14,7 +14,7 @@ public class App {
         animal.setFavoriteActivity("running");
         animal.setHealthStatus(6);
         animal.setMood(5);
-        animal.setName("Vaca");
+        animal.setName("Animal");
 
         
 
