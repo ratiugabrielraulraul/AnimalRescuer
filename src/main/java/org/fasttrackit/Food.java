@@ -13,7 +13,6 @@ public class Food {
 
 
     public Food() {
-        this.name = name;
     }
 
     public boolean expirationDayCheck(LocalDate expirationDate, LocalDate now) {

@@ -11,12 +11,10 @@ public class Adopter {
     /**
      * Constructor;
      * @param name
-     * @param money
      */
-    public Adopter (String name, double money)
+    public Adopter (String name)
     {
         this.name = name;
-        this.money = money;
     }
 
     /**
