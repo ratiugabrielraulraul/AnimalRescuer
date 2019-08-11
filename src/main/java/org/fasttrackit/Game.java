@@ -18,21 +18,20 @@ public class Game {
     public void start() {
         initMessages();
         initAnimal();
+        nameAnimal();
         initRescuer();
         initFoods();
         initRecreationActivities();
-        requireFeeding();
-        requireActivity();
         feedOrActivity();
 
     }
 
     private void initAnimal() {
         this.animal = new Animal();
-        this.animal.setName("Motanu ");
         this.animal.setAge(20);
-        this.animal.setHealthStatus(3);
+        this.animal.setHealthStatus(10);
         this.animal.setHunger(10);
+        this.animal.setMood(10);
         this.animal.setSpiritMood("sad");
         this.animal.setFavoriteActivity("Being near a human");
         this.animal.setFavoriteFood("milk");
@@ -63,12 +62,11 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         try {
             this.foodNumber = scanner.nextInt();
-            System.out.println("You have chosen" + this.availableFood.get(this.foodNumber).getName());
+            System.out.println("You have chosen " + this.availableFood.get(this.foodNumber).getName());
             this.adopter.feed(this.animal, this.availableFood.get(this.foodNumber));
         } catch (IllegalStateException | NoSuchElementException e) {
             this.foodNumber = -1;
             System.out.println("You have not chosen any food! Your animal will starve");
-            requireActivity();
         }
     }
 
@@ -86,7 +84,7 @@ public class Game {
         askForInput();
         try {
             this.recreationActivityNumber = scanner.nextInt();
-            System.out.println("You have chosen" + this.recreationActivities[this.recreationActivityNumber].getName());
+            System.out.println("You have chosen " + this.recreationActivities[this.recreationActivityNumber].getName());
             this.adopter.play(this.recreationActivities[this.recreationActivityNumber], this.animal);
         } catch (IllegalStateException | NoSuchElementException e) {
             this.recreationActivityNumber = -1;
@@ -129,14 +127,20 @@ public class Game {
         this.availableFood.add(milk);
     }
 
-
-    public void feedOrActivity()
+    private void nameAnimal()
     {
-        checkIfGameIsEnded();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please choose the name of the rescued animal: ");
+        this.animal.setName(scanner.nextLine());
+    }
+
+
+    private void feedOrActivity()
+    {
         Random random = new Random();
 
-        for (; this.i <= 15; this.i++) {
-            System.out.println("Round " + i + " starts");
+        for (; this.i <= 30; this.i++) {
+            System.out.println("Round " + i + " starts out of 30");
             System.out.println("Your animal has: \n" +
                     "hunger:" + this.animal.getHunger() + "\n" +
                     "mood:" + this.animal.getMood() + "\n" );
@@ -167,16 +171,25 @@ public class Game {
                        this.animal.setMood(this.animal.getMood() - random.nextInt(2));
                    }
                }
+            if (checkIfGameIsEnded()) {
+                break;
+            }
         }
     }
 
-    public void checkIfGameIsEnded() {
-        if (this.animal.getHunger() >= 10 | this.animal.getMood() <= 0) {
-            System.out.println("This game has ended your animal reached mood or hunger 0");
+    private boolean checkIfGameIsEnded() {
+        if (this.animal.getHunger() >= 20) {
+            System.out.println("This game has ended your animal reached mood " + this.animal.getMood() + " and food level " + this.animal.getHunger());
+            return true;
         }
+        if (this.animal.getMood() < 0) {
+            System.out.println("This game has ended your animal reached mood " + this.animal.getMood() + " and food level " + this.animal.getHunger());
+            return true;
+        }
+        return false;
     }
 
-    public void initMessages() {
+    private void initMessages() {
         System.out.println("Game has started");
     }
 
