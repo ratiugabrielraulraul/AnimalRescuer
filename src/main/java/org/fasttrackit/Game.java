@@ -1,20 +1,31 @@
 package org.fasttrackit;
 
 import java.time.LocalDate;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
 
     private Animal animal;
     private Adopter adopter;
-    private Food[] foods = new Food[3];
+
+    private List<Food> availableFood = new ArrayList<>();
+
     private RecreationActivity[] recreationActivities = new RecreationActivity[2];
     private int foodNumber;
     private int recreationActivityNumber;
     private int i = 0;
+
+    public void start() {
+        initMessages();
+        initAnimal();
+        initRescuer();
+        initFoods();
+        initRecreationActivities();
+        requireFeeding();
+        requireActivity();
+        feedOrActivity();
+
+    }
 
     private void initAnimal() {
         this.animal = new Animal();
@@ -28,32 +39,32 @@ public class Game {
     }
 
     private void initRescuer() {
-        this.adopter = new Adopter("Thomas");
+        this.adopter = new Adopter();
 
         Scanner scanner = new Scanner(System.in);
 
         try {
+            System.out.println("Choose your name: ");
+            this.adopter.setName(scanner.nextLine());
             System.out.println("Adopter with the name of " + this.adopter.getName() + " has been created");
-            System.out.println("Please enter the amount of money you want to have: ");
-            this.adopter.setMoney(scanner.nextInt());
         } catch (IllegalStateException | NoSuchElementException e) {
             initRescuer();
         }
-
-        this.adopter.setName("Thomas");
     }
 
     private void requireFeeding() {
         System.out.println("The types of food that we have are");
-        for (int i = 0; i< this.foods.length; i++) {
-            System.out.println(i + " - " + this.foods[i].getName());
+        int a = 0;
+        for(Food food : this.availableFood) {
+            System.out.println(a + " - " + food.getName());
+            a++;
         }
         askForInput();
         Scanner scanner = new Scanner(System.in);
         try {
             this.foodNumber = scanner.nextInt();
-            System.out.println("You have chosen" + this.foods[this.foodNumber].getName());
-            this.adopter.feed(this.animal, this.foods[this.foodNumber]);
+            System.out.println("You have chosen" + this.availableFood.get(this.foodNumber).getName());
+            this.adopter.feed(this.animal, this.availableFood.get(this.foodNumber));
         } catch (IllegalStateException | NoSuchElementException e) {
             this.foodNumber = -1;
             System.out.println("You have not chosen any food! Your animal will starve");
@@ -113,22 +124,11 @@ public class Game {
         milk.setQuantity(100);
         milk.setName("Milk");
 
-        this.foods[0] = pedigree;
-        this.foods[1] = seeds;
-        this.foods[2] = milk;
+        this.availableFood.add(pedigree);
+        this.availableFood.add(seeds);
+        this.availableFood.add(milk);
     }
 
-    public void start() {
-        initMessages();
-        initAnimal();
-        initRescuer();
-        initFoods();
-        initRecreationActivities();
-        requireFeeding();
-        requireActivity();
-        feedOrActivity();
-
-    }
 
     public void feedOrActivity()
     {
@@ -171,7 +171,7 @@ public class Game {
     }
 
     public void checkIfGameIsEnded() {
-        if (this.animal.getHunger() >= 10 | this.animal.getMood() == 0) {
+        if (this.animal.getHunger() >= 10 | this.animal.getMood() <= 0) {
             System.out.println("This game has ended your animal reached mood or hunger 0");
         }
     }
@@ -194,14 +194,6 @@ public class Game {
 
     public void setAdopter(Adopter adopter) {
         this.adopter = adopter;
-    }
-
-    public Food[] getFoods() {
-        return foods;
-    }
-
-    public void setFoods(Food[] foods) {
-        this.foods = foods;
     }
 
     public RecreationActivity[] getRecreationActivities() {

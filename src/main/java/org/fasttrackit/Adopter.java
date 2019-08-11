@@ -10,11 +10,10 @@ public class Adopter {
 
     /**
      * Constructor;
-     * @param name
      */
-    public Adopter (String name)
+    public Adopter ()
     {
-        this.name = name;
+        this.setMoney(35);
     }
 
     /**
