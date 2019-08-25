@@ -55,7 +55,7 @@ public class Game {
 
         try {
             System.out.println("Choose your name: ");
-            while (!scanner.hasNext("[a-zA-Z]")) {
+            while (!scanner.hasNext("^[a-zA-Z]+$")) {
                 System.out.println("That's not a name");
                 scanner.next();
             }
@@ -71,7 +71,7 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the name of your animal: ");
 
-        while (! scanner.hasNext("[a-zA-Z]")) {
+        while (! scanner.hasNext("^[a-zA-Z]+$")) {
             System.out.println("Please enter a valid name");
             scanner.next();
         }
@@ -168,7 +168,7 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose the name of the rescued animal: ");
 
-        while (!scanner.hasNext("[a-zA-Z]")) {
+        while (!scanner.hasNext("^[a-zA-Z]+$")) {
             System.out.println("That's not a valid name");
             scanner.next();
         }
