@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class AnimalService {
-    AnimalRepository  animalRepository = new AnimalRepository();
+    private AnimalRepository animalRepository = new AnimalRepository();
 
     public void createAnimal(Animal request) throws SQLException, IOException, ClassNotFoundException {
         System.out.println("Creating animal..." + request);
@@ -28,7 +28,7 @@ public class AnimalService {
     }
     public void UpdateAnimal(int id, UpdateAnimalRequest request) throws SQLException, IOException, ClassNotFoundException {
         System.out.println("Updating animal..." + id + "id" + request);
-        animalRepository.updateAnimal(id,request.getName());
+//        animalRepository.updateAnimal(id,request.getName());
 
 
     }

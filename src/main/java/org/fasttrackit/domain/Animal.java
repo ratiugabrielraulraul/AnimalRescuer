@@ -91,6 +91,7 @@ public class Animal  {
     }
 
     public void setSpiritMood(String spiritMood) {
+
         this.spiritMood = spiritMood;
     }
 }

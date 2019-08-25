@@ -12,7 +12,7 @@ public class AnimalRepository {
     public void createAnimal(String name, int age, int healthStatus, int hunger, int mood, String favoriteActivity, String
             favoriteFood, String spiritMood) throws SQLException, IOException, ClassNotFoundException {
 
-        String insertSql = "INSERT INTO Animal (name, age ,health_status, hunger , mood , favorite_food,favorite_activity, " +
+        String insertSql = "INSERT INTO animal (name, age ,health_status, hunger , mood , favorite_food, favorite_activity, " +
                 "spirit_mood) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = DatabaseConfiguration.getConnection();
@@ -64,13 +64,13 @@ public class AnimalRepository {
     }
 
     public Animal getAnimal(String name) throws SQLException, IOException, ClassNotFoundException {
-        String query = "SELECT id, name ,age ,health_status, hunger, mood, favorite_food, spirit_mood FROM animal WHERE `name`= ?";
+        String query = "SELECT id, name ,age ,health_status, hunger, mood, favorite_food, favorite_activity, spirit_mood FROM animal WHERE `name`= ?";
 
         try (Connection connection = DatabaseConfiguration.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, name);
-            ResultSet resultSet = preparedStatement.executeQuery(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
@@ -90,23 +90,25 @@ public class AnimalRepository {
         return null;
     }
 
-    public void updateAnimal(int id, String name) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "UPDATE animal set `name` = ? WHERE id = ?";
+    public void updateAnimal(long id, String name, int hunger, int mood) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "UPDATE animal set `name` = ? , `hunger` = ?, `mood` = ? WHERE id = ?";
         try (Connection connection = DatabaseConfiguration.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, hunger);
+            preparedStatement.setInt(3, mood);
+            preparedStatement.setLong(4, id);
             preparedStatement.executeUpdate();
 
         }
     }
 
-    public void deleteAnimal(int id) throws SQLException, IOException, ClassNotFoundException {
+    public void deleteAnimal(long id) throws SQLException, IOException, ClassNotFoundException {
         String sql = "DELETE FROM animal WHERE id = ?";
 
         try (Connection connection = DatabaseConfiguration.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         }
     }

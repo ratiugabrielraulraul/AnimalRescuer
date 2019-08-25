@@ -1,7 +1,12 @@
 package org.fasttrackit;
 
+//import jdk.nashorn.internal.ir.RuntimeNode;
 import org.fasttrackit.domain.Animal;
+import org.fasttrackit.persistence.AnimalRepository;
+//import org.fasttrackit.service.AnimalService;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -10,16 +15,18 @@ public class Game {
     private Animal animal;
     private Adopter adopter;
 
+    private List<Animal> availableAnimal = new ArrayList<>();
     private List<Food> availableFood = new ArrayList<>();
 
     private RecreationActivity[] recreationActivities = new RecreationActivity[2];
+    private int animalNumber;
     private int foodNumber;
     private int recreationActivityNumber;
     private int i = 0;
 
-    public void start() {
+    public void start() throws SQLException, IOException, ClassNotFoundException {
         initMessages();
-        initAnimal();
+        requireAnimal();
         nameAnimal();
         initRescuer();
         initFoods();
@@ -27,14 +34,16 @@ public class Game {
         feedOrActivity();
 
     }
-
+//fa ca si la initFoods , plus creaza o noua proprietate availableAnimals
+    //dupa creaza o metoda noua requireAnimal in care sa iterezi peste availableAnimals si sa il lasi pe jucator sa aleaga
+    //la finalul metodei ii vei atribuii this.animal animalul ales de jucator
     private void initAnimal() {
         this.animal = new Animal();
         this.animal.setAge(20);
         this.animal.setHealthStatus(10);
         this.animal.setHunger(10);
         this.animal.setMood(10);
-        this.animal.setSpiritMood("sad");
+        this.animal.setSpiritMood("good");
         this.animal.setFavoriteActivity("Being near a human");
         this.animal.setFavoriteFood("milk");
     }
@@ -55,6 +64,27 @@ public class Game {
         } catch (IllegalStateException | NoSuchElementException e) {
             initRescuer();
         }
+    }
+
+    private void requireAnimal() throws SQLException, IOException, ClassNotFoundException {
+        AnimalRepository animalRepository = new AnimalRepository();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the name of your animal: ");
+
+        while (! scanner.hasNext("[a-zA-Z]")) {
+            System.out.println("Please enter a valid name");
+            scanner.next();
+        }
+
+        this.animal = animalRepository.getAnimal(scanner.nextLine());
+        if (this.animal == null) {
+            initAnimal();
+            nameAnimal();
+            animalRepository.createAnimal(this.animal.getName(), this.animal.getAge(), this.animal.getHealthStatus(),
+                    this.animal.getHunger(), this.animal.getMood(), this.animal.getFavoriteActivity(),
+                    this.animal.getFavoriteFood(), this.animal.getSpiritMood());
+        }
+        this.animal = animalRepository.getAnimal(animal.getName());
     }
 
     private void requireFeeding() {
@@ -146,14 +176,15 @@ public class Game {
     }
 
 
-    private void feedOrActivity()
-    {
+    private void feedOrActivity() throws SQLException, IOException, ClassNotFoundException {
+        AnimalRepository animalRepository = new AnimalRepository();
+        Animal animalRepo = animalRepository.getAnimal(this.animal.getName());
         Random random = new Random();
-
         for (; this.i <= 15; this.i++) {
             System.out.println("Round " + i + " starts out of 15");
             System.out.println("Your animal has: \n" +
                     "hunger:" + this.animal.getHunger() + "\n" +
+                    "spirit_mood:" + this.animal.getSpiritMood() + "\n" +
                     "mood:" + this.animal.getMood() + "\n" );
 
             //if i is even
@@ -161,27 +192,50 @@ public class Game {
                    requireFeeding();
                    //if number of the round is 2 do this
                    if (i == 2) {
-                       this.animal.setHunger(this.animal.getHunger() - random.nextInt(3));
+                       int hunger = this.animal.getHunger() - random.nextInt(3);
+                       animalRepository.updateAnimal(animalRepo.getId(), this.animal.getName(), hunger, this.animal.getMood());
+                       this.animal.setHunger(hunger);
                    }
                    // if user has chosen a food then we decrease food level
                    if (this.foodNumber >= 0) {
+                       animalRepository.updateAnimal(animalRepo.getId(),
+                               this.animal.getName(),
+                               this.animal.getHunger() - random.nextInt(3),
+                               this.animal.getMood());
                        this.animal.setHunger(this.animal.getHunger() - random.nextInt(3));
                    } else {
+                       animalRepository.updateAnimal(animalRepo.getId(),
+                               this.animal.getName(),
+                               this.animal.getHunger() + random.nextInt(4),
+                               this.animal.getMood());
                        this.animal.setHunger(this.animal.getHunger() + random.nextInt(4));
                    }
                } else {
                    requireActivity();
                    if (i == 2) {
+                       animalRepository.updateAnimal(animalRepo.getId(),
+                               this.animal.getName(),
+                               this.animal.getHunger(),
+                               this.animal.getMood() - random.nextInt(3));
                        this.animal.setMood(this.animal.getMood() - random.nextInt(3));
                    }
                    //if user has chosen an activity we increase mood && we increase hunger
                    if (this.recreationActivityNumber >= 0) {
+                       animalRepository.updateAnimal(animalRepo.getId(),
+                               this.animal.getName(),
+                               this.animal.getHunger() + random.nextInt(2),
+                               this.animal.getMood() + random.nextInt(3));
                        this.animal.setMood(this.animal.getMood() + random.nextInt(3));
                        this.animal.setHunger(this.animal.getHunger() + random.nextInt(2));
                    } else {
+                       animalRepository.updateAnimal(animalRepo.getId(),
+                               this.animal.getName(),
+                               this.animal.getHunger(),
+                               this.animal.getMood() - random.nextInt(3));
                        this.animal.setMood(this.animal.getMood() - random.nextInt(2));
                    }
                }
+               updateSpiritMood();
             if (checkIfGameIsEnded()) {
                 break;
             }
@@ -198,6 +252,18 @@ public class Game {
             return true;
         }
         return false;
+    }
+
+    private void updateSpiritMood(){
+
+        if (this.animal.getMood() < 5) {
+            this.animal.setSpiritMood("sad");
+
+        }else if (this.animal.getMood()>7 && this.animal.getMood()<10) {
+            this.animal.setSpiritMood("happy");
+        }else {
+            this.animal.setSpiritMood("very happy");
+        }
     }
 
     private void initMessages() {
