@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import org.fasttrackit.domain.Animal;
+
 public class Parrot extends Animal {
 
     boolean availableToTalk;

@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import org.fasttrackit.domain.Animal;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -44,6 +46,10 @@ public class Game {
 
         try {
             System.out.println("Choose your name: ");
+            while (!scanner.hasNext("[a-zA-Z]")) {
+                System.out.println("That's not a name");
+                scanner.next();
+            }
             this.adopter.setName(scanner.nextLine());
             System.out.println("Adopter with the name of " + this.adopter.getName() + " has been created");
         } catch (IllegalStateException | NoSuchElementException e) {
@@ -76,7 +82,7 @@ public class Game {
     }
 
     private void requireActivity() {
-        System.out.println("The types of recreation activities that we have are");
+        System.out.println("The types of recreation activities that we have are:  ");
         for (int i = 0; i< this.recreationActivities.length; i++) {
             System.out.println(i + " - " + this.recreationActivities[i].getName());
         }
@@ -94,7 +100,7 @@ public class Game {
 
     private void initRecreationActivities() {
         RecreationActivity running = new RecreationActivity("running", "Hill");
-        RecreationActivity ballCatching = new RecreationActivity("ball catching", "garen");
+        RecreationActivity ballCatching = new RecreationActivity("ball catching", "garden");
 
         this.recreationActivities[0] = running;
         this.recreationActivities[1] = ballCatching;
@@ -131,6 +137,11 @@ public class Game {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose the name of the rescued animal: ");
+
+        while (!scanner.hasNext("[a-zA-Z]")) {
+            System.out.println("That's not a valid name");
+            scanner.next();
+        }
         this.animal.setName(scanner.nextLine());
     }
 
@@ -139,8 +150,8 @@ public class Game {
     {
         Random random = new Random();
 
-        for (; this.i <= 30; this.i++) {
-            System.out.println("Round " + i + " starts out of 30");
+        for (; this.i <= 15; this.i++) {
+            System.out.println("Round " + i + " starts out of 15");
             System.out.println("Your animal has: \n" +
                     "hunger:" + this.animal.getHunger() + "\n" +
                     "mood:" + this.animal.getMood() + "\n" );

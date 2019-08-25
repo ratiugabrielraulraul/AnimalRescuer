@@ -1,6 +1,6 @@
 package org.fasttrackit;
 
-import javax.security.auth.login.AccountNotFoundException;
+import org.fasttrackit.domain.Animal;
 
 public class Adopter {
 

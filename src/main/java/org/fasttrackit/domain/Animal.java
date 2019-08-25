@@ -1,6 +1,8 @@
-package org.fasttrackit;
+package org.fasttrackit.domain;
 
-public class Animal {
+import java.util.List;
+
+public class Animal  {
 
     private String name;
     private int age;
@@ -10,9 +12,15 @@ public class Animal {
     private String favoriteFood;
     private String favoriteActivity;
     private String spiritMood;
+    private long id;
 
+    public long getId() {
+        return id;
+    }
 
-
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Animal() {
     }
