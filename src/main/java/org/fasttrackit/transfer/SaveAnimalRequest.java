@@ -1,4 +1,4 @@
-package org.fasttrackit.domain.transfer;
+package org.fasttrackit.transfer;
 
 import java.time.LocalDate;
 

@@ -1,7 +1,7 @@
 package org.fasttrackit.service;
 
 import org.fasttrackit.domain.Animal;
-import org.fasttrackit.domain.transfer.UpdateAnimalRequest;
+import org.fasttrackit.transfer.UpdateAnimalRequest;
 import org.fasttrackit.persistence.AnimalRepository;
 
 import java.io.IOException;
@@ -26,13 +26,13 @@ public class AnimalService {
       return animalRepository.getAnimal(name);
         
     }
-    public void UpdateAnimal(int id, UpdateAnimalRequest request) throws SQLException, IOException, ClassNotFoundException {
+    public void UpdateAnimal(long id, UpdateAnimalRequest request) throws SQLException, IOException, ClassNotFoundException {
         System.out.println("Updating animal..." + id + "id" + request);
 //        animalRepository.updateAnimal(id,request.getName());
 
 
     }
-    public void deleteAnimal(int id) throws SQLException, IOException, ClassNotFoundException {
+    public void deleteAnimal(long id) throws SQLException, IOException, ClassNotFoundException {
         System.out.println("Deleteting animal..." );
         animalRepository.deleteAnimal(id);
 }

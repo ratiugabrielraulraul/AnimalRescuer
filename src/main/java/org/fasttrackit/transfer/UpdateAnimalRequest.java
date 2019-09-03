@@ -1,4 +1,4 @@
-package org.fasttrackit.domain.transfer;
+package org.fasttrackit.transfer;
 
 public class UpdateAnimalRequest {
     private String name;

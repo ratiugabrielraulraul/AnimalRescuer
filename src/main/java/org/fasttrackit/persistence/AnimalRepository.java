@@ -35,7 +35,7 @@ public class AnimalRepository {
                 "FROM animal";
 
         try (Connection connection = DatabaseConfiguration.getConnection();
-             Statement statement = connection.createStatement();
+             Statement statement = connection.createStatement()
         ) {
             ResultSet resultSet = statement.executeQuery(query);
 
